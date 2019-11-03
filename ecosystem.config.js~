@@ -1,0 +1,17 @@
+module.exports = {
+  apps: [{
+    name: 'surveys',
+    script: './index.js'
+  }],
+  deploy: {
+    production: {
+      user: 'ubuntu',
+      host: '',
+      key: '~/.ssh/tutorial-2.pem',
+      ref: 'origin/master',
+      repo: 'git@github.com:roberttod/tutorial-pt-2.git',
+      path: '/home/ubuntu/',
+      'post-deploy': 'npm install && pm2 startOrRestart ecosystem.config.js'
+    }
+  }
+}
